@@ -1,0 +1,70 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+- intent: extract_database
+  examples: |
+    - get data
+    - all state data from change_package 
+
+- intent: inquire_cpstatus
+  examples: |
+    - what is cp status?
+    - cp status
+
+- intent: cp_info 
+  examples: |
+    - [NX953497](cp)
+    - [NX953912](cp)
+    - [NX954044](cp) 
+    - [NX948681](cp)
+    - [NX953912](cp)
+    - [NX953834](cp)
+
+- lookup: cp_no
+  examples: |
+    - NX953497
+    - NX954044
+    - NX948681
+    - NX953912
+
+- intent: give_time
+  examples: |
+    - current time?
+    - tell date?
+    - what is the date and time?
+
+#2.  FAQ-1  
+- intent: Change_package
+  examples: |
+    - I would like to know how the Change Packages are run in SubmitCI stage?
+    - Change Packages are run in SubmitCI stage
+    - Change Packages in SubmitCI stage
+
+#3.  FAQ-2  
+- intent: build_on_cp
+  examples: |
+    - Is developer not supposed to run build and tests for his change package in his machine? 
+    - run build and tests for his change package
+    - run tests on change package in  machine
+
+#4.  FAQ-3  
+- intent: check_static_analysis
+  examples: |
+    - As a developer, can I bypass any check in static analysis or skip any build step or tests in SubmitCI? 
+    - check in static analysis
+    - skip any build step or tests in SubmitCI
+
+#5. Asks problem -> 1 or 2 or 3.
+- intent: inquire_problem
+  examples: |
+    - Facing problem
+    - problem area
+    - Problem faced
+    - I have a problem
+
+

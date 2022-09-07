@@ -1,0 +1,53 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: path about database
+  steps: 
+  - intent: extract_database
+  - action: action_get_database
+
+- story: path about time 
+  steps: 
+  - intent: give_time
+  - action: action_show_time
+
+
+- story: path about cp
+  steps:
+  - intent: inquire_cpstatus
+  - action: utter_ask_cp_number
+  - intent: cp_info
+  - action: utter_finding_cp_info
+  - action: action_show_cpstatus
+
+- story: Change_package path 
+  steps:
+  - intent: Change_package
+  - action: utter_Change_package-1                  #1.    
+  - action: utter_Change_package-2                  #2.
+  - action: utter_did_that_help                     #3.
+
+- story: build_on_cp path 
+  steps:
+  - intent: build_on_cp
+  - action: utter_build_cp1                         #4.
+  - action: utter_build_cp2                         #5.
+  - action: utter_did_that_help
+
+- story: static analysis path 
+  steps:
+  - intent: check_static_analysis
+  - action: utter_check_static_analysis-1            #6.
+  - action: utter_check_static_analysis-2            #7.
+  - action: utter_check_static_analysis-3            #8.
+  - action: utter_did_that_help
+
+
+
+ 

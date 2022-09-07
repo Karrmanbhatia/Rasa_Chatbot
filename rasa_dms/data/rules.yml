@@ -1,0 +1,10 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: cp_info
+  - action: utter_finding_cp_info
+  - action: action_show_cpstatus
+ 

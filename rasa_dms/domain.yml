@@ -1,0 +1,67 @@
+version: "2.0"
+
+intents:
+  - greet
+  - extract_database
+  - inquire_cpstatus
+  - cp_info
+  - give_time 
+  - Change_package           #2
+  - build_on_cp              #3
+  - check_static_analysis    #4
+  - inquire_problem          #5
+  
+actions:
+  - action_show_time
+  - action_get_database
+  - action_show_cpstatus
+
+entities:
+- cp
+slots:
+  cp:
+    type: text
+    influence_conversation: true
+
+responses:
+  utter_did_that_help:
+  - text: "Hope that helps you!"
+  utter_greet:
+  - text: "Hey! How are you?"
+  utter_ask_cp_number:
+  - text: "Give your CP number to get more info (Eg:NX953497)"
+  utter_finding_cp_info:
+  - text: " Ok give me a second to look up cp info of {cp}"
+  utter_Change_package-1:
+  - text: "SubmitCI is triggered when a CP is put to Submitted state.\n To run a CP in SubmitCI, PreintCI stage is mocked up that just pulls in the latest group build from the integrator's standard nightly builds, against which the CP will be built and tested. 
+          \n The group build is then expanded out into a VM template"         
+  utter_Change_package-2:
+  - text: "Depending on the target environment of the CP, the correct template is picked to fire up a new VM which contains the required group build to run the SubmitCI stage.In the VM, the CP files are loaded. It also pulls other CPs that have either overlapping files (closed after baseline) or/and user dependencies with the main CP. "
+  
+#4 & 5.
+  utter_build_cp1:
+  - text: "If you just submit your CP without running a single test or check then the chances of it being rejected are higher. 
+           Now for a small change then that might be quite safe to do based on your evaluation of the change. 
+           For a larger change you probably want to run some checks to give you the confidence that the code is likely to just flow in but developers
+           should be able to decide whether that's 100 tests, 1,000 tests or 10,000 tests."
+  utter_build_cp2:
+  - text: "To update test YAML rules, please drop email to NX-Test-Efficiency-CI NX-Test-Efficiency-CI@ugs.com.\nIf developer puts the CP in submit state, code review and pipeline build will happen in
+           parallel and in most cases before reviewers have even started to look at the change package, results will be available from the CI pipeline"
+  
+#6 & 7 & 8.
+  utter_check_static_analysis-1:
+  - text: "No, developers will not be able to bypass any build step or validate checks or tests in SubmitCI. All the validations are done in CI pipeline in remote central pool of machines. "
+  utter_check_static_analysis-2:
+  - text: "PROBLEM REPORTING - Provides information about how any problem should be reported via IR mechanism and specify details about all the relevant categories"
+  utter_check_static_analysis-3:
+  - text: "NX SubmitCI have migrated from Devtools (IR tool) to ServiceNow. The existing IRs that were filed, will still be updated via the IR tool. Any new incoming incidents, requests, issues will be handled on ServiceNow. Please use the below link to raise any request related to Build, Validate, Test component and Dashboard and the same link is updated in SubmitCI failure emails sent to developers."  
+ 
+#9 &10.
+  utter_ask_problem_number:
+  - text: "Select your problem type. 1)- SubmitCI Issue. 2)- PrintCI Issue. 3)- UDV Issue."
+  utter_finding_problem_info:
+  - text: " Ok give me a second to look up for  {problem} issue"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
